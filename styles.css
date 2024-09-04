@@ -16,9 +16,27 @@ body {
 }
 
 header {
+    display: flex;
+    justify-content: space-between;
+
     background-color: #0073e6;
     color: white;
     padding: 20px 0;
+}
+
+#boneco {
+    width: 180px;
+    height: 180px;
+}
+
+#arrumalogo {
+    display: flex;
+    align-items: center;
+}
+
+#botoes {
+    display: flex;
+    flex-direction: column;
 }
 
 main {
@@ -30,10 +48,10 @@ button {
     padding: 15px 30px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #0073e6;
-    color: white;
+    background-color: #f0f0f0;
+    color: #0073e6;
     border: none;
-    border-radius: 5px;
+    border-radius: 40px;
 }
 
 button:hover {
@@ -42,14 +60,14 @@ button:hover {
 
 .plan-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
   }
   
   .plan-card {
     background-color: #e9e9e9;
-    border: 2px solid gold;
+    border: 2px solid #005bb5;
     border-radius: 10px;
     width: 300px;
     padding: 20px;
@@ -99,7 +117,7 @@ button:hover {
   }
   
   .btn-plan {
-    background-color: gold;
+    background-color: #005bb5;
     color: white;
     font-family: 'Gotham Black', sans-serif;
     font-size: 12px;
@@ -118,7 +136,7 @@ button:hover {
   
   .btn-info {
     background-color: transparent;
-    border: 2px solid gold;
+    border: 2px solid #005bb5;
     font-size: 12px;
     width: 100%;
     padding: 10px;
@@ -166,3 +184,15 @@ button:hover {
   .footer .fab:hover {
     color: #ffd700;
   }
+
+footer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #f0f0f0;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}

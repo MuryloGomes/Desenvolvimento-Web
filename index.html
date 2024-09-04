@@ -8,22 +8,23 @@
 </head>
 <body>
     <header>
-    <a href="https://www.impacta.edu.br">
-        <img src="../imagens/logoimpacta.png" alt="logo impacta" id="logo_impacta">
-    </a>
+        <img src="../imagens/bonecoooo.png" id="boneco">
+        <a href="https://www.impacta.edu.br" id="arrumalogo">
+            <img src="../imagens/logoimpacta.png" alt="logo impacta" id="logo_impacta">
+        </a>
+        <div id="botoes">
+            <button onclick="window.location.href='./login/login.html'">Login</button>
+            <button onclick="window.location.href='./register/register.html'">Cadastro</button>
+        </div>
     </header>
     <main>
         <h1>Seja sócio torcedor do team impacta</h1>
         <h2>VOCÊ AINDA MAIS PERTO DA FACULDADE</h2>
         <p>Viva experiências incríveis ao lado do Mais Querido com benefícios exclusivos</p>
-        <div>
-            <button onclick="window.location.href='./login/login.html'">Login</button>
-            <button onclick="window.location.href='./register/register.html'">Cadastro</button>
-        </div>
         <div class="plan-container">
             <div class="plan-card">
               <div class="plan-logo">
-                <img alt="Logo Assinatura Básica" src="caminho_para_o_logo.png" style="height: 78px">
+                <img alt="Logo Assinatura Básica" src="../imagens/bonecoooo.png" style="height: 78px">
               </div>
               <div class="plan-title">
                 Assinatura Básica
@@ -51,7 +52,7 @@
           
             <div class="plan-card">
               <div class="plan-logo">
-                <img alt="Logo Assinatura Premium" src="caminho_para_o_logo.png" style="height: 78px">
+                <img alt="Logo Assinatura Premium" src="../imagens/bonecoooo.png" style="height: 78px">
               </div>
               <div class="plan-title">
                 Assinatura Premium
@@ -79,7 +80,7 @@
           
             <div class="plan-card">
               <div class="plan-logo">
-                <img alt="Logo Assinatura VIP" src="caminho_para_o_logo.png" style="height: 78px">
+                <img alt="Logo Assinatura VIP" src="../imagens/bonecoooo.png" style="height: 78px">
               </div>
               <div class="plan-title">
                 Assinatura VIP
@@ -107,45 +108,59 @@
           </div>
     </main>
     <footer class="footer bg-dark text-white p-4">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="text-white font-gotham font14 mb-2">
+                    <b>Clube social da Impacta - Atendimento Presencial</b>
+                </div>
+                <div class="text-white font-gotham font12">
+                    Ao lado do metrô paraiso.
+                    <br>
+                    Rua Cubatão, 726 - Vila Mariana<br>São Paulo - SP
+                </div>
+                </div>
+            <div class="col-md-3 mb-4">
+                <div class="text-white font-gotham font14 mb-2">
+                    <b>Horário Posto de atendimento</b>
+                </div>
+                <div class="text-white font-gotham font12">
+                    Terça-feira à quinta-feira, das 8h às 19h,<br>Sexta-feira das
+                    08h às 18h, <br>Sábado, domingo e feriado das 10h às 17h.<br>Segunda-feira
+                    fechado.
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="text-white font-gotham font14 mb-2">
+                    <b>Fale conosco</b>
+                </div>
+                <div class="text-white font-gotham font12">
+                    4002-8922 
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="text-white font-gotham font14 mb-2">
+                    Horário de atendimento
+                </div>
+                <div class="text-white font-gotham font12">
+                    De segunda a quinta-feira, das 8h às 19h,<br>Sextas-feiras das
+                    8h às 18h. <br>Sábados, domingos e feriados somente presencial
+                    no posto de Atendimento do Clube
+                </div>
+            </div>
+        </div>
         <div class="container">
           <div class="row">
             <!-- Logo e Descrição -->
             <div class="col-md-4 text-center text-md-left mb-3">
-              <img src="/static/fieltorcedor/img/logo_digital.png" alt="Logo Fiel Digital" style="height: 50px;">
+              <img src="../imagens/bonecoooo.png" alt="Logo Fiel Digital" style="height: 50px;">
               <p class="mt-2 font10" style="color: #ffffff;">
-                Acompanhe o dia a dia do Timão com conteúdos exclusivos e benefícios especiais.
+                Acompanhe o dia a dia da Impacta com conteúdos exclusivos e benefícios especiais.
               </p>
-            </div>
-      
-            <!-- Links Rápidos -->
-            <div class="col-md-4 text-center text-md-left mb-3">
-              <h5 class="font-gotham-black text-uppercase mb-3" style="color: #ffffff;">Links Rápidos</h5>
-              <ul class="list-unstyled">
-                <li><a href="/sobre" class="text-white" style="color: #ffffff;">Sobre Nós</a></li>
-                <li><a href="/planos" class="text-white" style="color: #ffffff;">Planos</a></li>
-                <li><a href="/faq" class="text-white" style="color: #ffffff;">FAQ</a></li>
-                <li><a href="/contato" class="text-white" style="color: #ffffff;">Contato</a></li>
-              </ul>
-            </div>
-      
-            <!-- Redes Sociais -->
-            <div class="col-md-4 text-center text-md-left mb-3">
-              <h5 class="font-gotham-black text-uppercase mb-3" style="color: #ffffff;">Siga-nos</h5>
-              <div>
-                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-youtube"></i></a>
+              <div class="col text-center">
+                <!-- Linha de Direitos Autorais -->
+                <p class="font10" style="color: #ffffff;">&copy; 2024 Impacta Club. Todos os direitos reservados.</p>
               </div>
             </div>
-          </div>
-      
-          <!-- Linha de Direitos Autorais -->
-          <div class="row mt-4">
-            <div class="col text-center">
-              <p class="font10" style="color: #ffffff;">&copy; 2024 Fiel Digital. Todos os direitos reservados.</p>
-            </div>
-          </div>
         </div>
       </footer>
     <script src="script.js"></script>
