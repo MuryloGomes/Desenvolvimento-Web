@@ -8,12 +8,146 @@
 </head>
 <body>
     <header>
-        <h1>Bem-vindo ao Sócio Torcedor</h1>
+    <a href="https://www.impacta.edu.br">
+        <img src="../imagens/logoimpacta.png" alt="logo impacta" id="logo_impacta">
+    </a>
     </header>
     <main>
-        <button onclick="window.location.href='./login/login.html'">Login</button>
-        <button onclick="window.location.href='./register/register.html'">Cadastro</button>
+        <h1>Seja sócio torcedor do team impacta</h1>
+        <h2>VOCÊ AINDA MAIS PERTO DA FACULDADE</h2>
+        <p>Viva experiências incríveis ao lado do Mais Querido com benefícios exclusivos</p>
+        <div>
+            <button onclick="window.location.href='./login/login.html'">Login</button>
+            <button onclick="window.location.href='./register/register.html'">Cadastro</button>
+        </div>
+        <div class="plan-container">
+            <div class="plan-card">
+              <div class="plan-logo">
+                <img alt="Logo Assinatura Básica" src="caminho_para_o_logo.png" style="height: 78px">
+              </div>
+              <div class="plan-title">
+                Assinatura Básica
+              </div>
+              <div class="plan-description">
+                Ideal para quem deseja acessar conteúdo exclusivo com um custo acessível.
+              </div>
+              <form method="post" action="/assinar/">
+                <input type="hidden" name="csrfmiddlewaretoken" value="SEU_TOKEN_AQUI">
+                <input type="hidden" name="category_id" value="1">
+                <div class="plan-price">
+                  <span class="currency">R$</span>
+                  <span class="amount">19</span>
+                  <span class="cents">,90</span>
+                  <span class="frequency">por mês</span>
+                </div>
+                <button type="submit" class="btn-plan">
+                  ASSINE AGORA
+                </button>
+                <button type="reset" class="btn-info">
+                  <a href="#info">MAIS INFORMAÇÕES</a>
+                </button>
+              </form>
+            </div>
+          
+            <div class="plan-card">
+              <div class="plan-logo">
+                <img alt="Logo Assinatura Premium" src="caminho_para_o_logo.png" style="height: 78px">
+              </div>
+              <div class="plan-title">
+                Assinatura Premium
+              </div>
+              <div class="plan-description">
+                Perfeito para quem quer acessar todo o conteúdo e participar de sorteios exclusivos.
+              </div>
+              <form method="post" action="/assinar/">
+                <input type="hidden" name="csrfmiddlewaretoken" value="SEU_TOKEN_AQUI">
+                <input type="hidden" name="category_id" value="2">
+                <div class="plan-price">
+                  <span class="currency">R$</span>
+                  <span class="amount">29</span>
+                  <span class="cents">,90</span>
+                  <span class="frequency">por mês</span>
+                </div>
+                <button type="submit" class="btn-plan">
+                  ASSINE AGORA
+                </button>
+                <button type="reset" class="btn-info">
+                  <a href="#info">MAIS INFORMAÇÕES</a>
+                </button>
+              </form>
+            </div>
+          
+            <div class="plan-card">
+              <div class="plan-logo">
+                <img alt="Logo Assinatura VIP" src="caminho_para_o_logo.png" style="height: 78px">
+              </div>
+              <div class="plan-title">
+                Assinatura VIP
+              </div>
+              <div class="plan-description">
+                O plano para quem quer tudo e mais um pouco, incluindo benefícios especiais.
+              </div>
+              <form method="post" action="/assinar/">
+                <input type="hidden" name="csrfmiddlewaretoken" value="SEU_TOKEN_AQUI">
+                <input type="hidden" name="category_id" value="3">
+                <div class="plan-price">
+                  <span class="currency">R$</span>
+                  <span class="amount">49</span>
+                  <span class="cents">,90</span>
+                  <span class="frequency">por mês</span>
+                </div>
+                <button type="submit" class="btn-plan">
+                  ASSINE AGORA
+                </button>
+                <button type="reset" class="btn-info">
+                  <a href="#info">MAIS INFORMAÇÕES</a>
+                </button>
+              </form>
+            </div>
+          </div>
     </main>
+    <footer class="footer bg-dark text-white p-4">
+        <div class="container">
+          <div class="row">
+            <!-- Logo e Descrição -->
+            <div class="col-md-4 text-center text-md-left mb-3">
+              <img src="/static/fieltorcedor/img/logo_digital.png" alt="Logo Fiel Digital" style="height: 50px;">
+              <p class="mt-2 font10" style="color: #ffffff;">
+                Acompanhe o dia a dia do Timão com conteúdos exclusivos e benefícios especiais.
+              </p>
+            </div>
+      
+            <!-- Links Rápidos -->
+            <div class="col-md-4 text-center text-md-left mb-3">
+              <h5 class="font-gotham-black text-uppercase mb-3" style="color: #ffffff;">Links Rápidos</h5>
+              <ul class="list-unstyled">
+                <li><a href="/sobre" class="text-white" style="color: #ffffff;">Sobre Nós</a></li>
+                <li><a href="/planos" class="text-white" style="color: #ffffff;">Planos</a></li>
+                <li><a href="/faq" class="text-white" style="color: #ffffff;">FAQ</a></li>
+                <li><a href="/contato" class="text-white" style="color: #ffffff;">Contato</a></li>
+              </ul>
+            </div>
+      
+            <!-- Redes Sociais -->
+            <div class="col-md-4 text-center text-md-left mb-3">
+              <h5 class="font-gotham-black text-uppercase mb-3" style="color: #ffffff;">Siga-nos</h5>
+              <div>
+                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Linha de Direitos Autorais -->
+          <div class="row mt-4">
+            <div class="col text-center">
+              <p class="font10" style="color: #ffffff;">&copy; 2024 Fiel Digital. Todos os direitos reservados.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     <script src="script.js"></script>
 </body>
 </html>
