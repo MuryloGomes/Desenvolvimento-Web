@@ -13,7 +13,10 @@ body {
     background-color: #e1e8f7;
     margin: 0;
     padding: 0;
+    background: url('imagens/cruzeiro-torcida1.jpg.crdownload') no-repeat center center fixed;
+    background-size: cover;
 }
+
 
 .headerr {
     display: flex;

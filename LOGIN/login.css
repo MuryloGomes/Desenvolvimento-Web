@@ -6,7 +6,10 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    background: url('imagens/cruzeiro-torcida1.jpg.crdownload') no-repeat center center fixed;
+    background-size: cover;
 }
+
 
 .login-container {
     background-color: #e1e8f7;
