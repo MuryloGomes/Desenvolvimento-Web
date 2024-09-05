@@ -15,7 +15,7 @@ body {
     padding: 0;
 }
 
-header {
+.headerr {
     display: flex;
     justify-content: space-between;
 
@@ -194,5 +194,6 @@ footer{
 
 .row {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
+
