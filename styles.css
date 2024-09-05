@@ -148,7 +148,7 @@ button:hover {
   }
 
   .footer {
-    background-color: #292929; /* Tom escuro para combinar com o tema */
+    background-color: #292929; 
     padding: 20px 0;
   }
   
@@ -168,7 +168,7 @@ button:hover {
   }
   
   .footer a:hover {
-    color: #ffd700; /* Efeito hover com a cor dourada */
+    color: #ffd700; 
   }
   
   .footer i {
