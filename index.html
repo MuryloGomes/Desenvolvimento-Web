@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sócio Torcedor</title>
     <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
     <header>
@@ -19,6 +20,36 @@
             <button onclick="window.location.href='./login/login.html'">Login</button>
             <button onclick="window.location.href='./register/register.html'">Cadastro</button>
         </div>
+        <style>
+          .whatsapp-button {
+              position: fixed;
+              bottom: 20px; /* Distância do fundo */
+              right: 20px;  /* Distância da borda direita */
+              width: 60px;  /* Largura do botão */
+              height: 60px; /* Altura do botão */
+              background-color: #25D366; /* Cor do botão */
+              border-radius: 50%; /* Faz o botão ser redondo */
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              text-decoration: none;
+              z-index: 1000; /* Garante que o botão esteja acima de outros elementos */
+          }
+  
+          .whatsapp-button::before {
+              content: '';
+              display: block;
+              width: 30px; /* Tamanho do ícone */
+              height: 30px;
+              background: url('https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg') no-repeat center;
+              background-size: contain; /* Ajusta o tamanho do ícone */
+          }
+  
+          .whatsapp-button:hover {
+              background-color: #128C7E; /* Cor do botão ao passar o mouse */
+          }
+      </style>
     </header>
     
     <main>
@@ -163,5 +194,8 @@
         </div>
       </footer>
     <script src="script.js"></script>
+    <a class="whatsapp-button" href="https://wa.me/5511987628803" target="_blank">
+      <!-- O conteúdo do botão é gerado pelo ::before -->
+  </a>
 </body>
 </html>
