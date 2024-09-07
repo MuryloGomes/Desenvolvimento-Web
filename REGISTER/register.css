@@ -20,7 +20,8 @@ body {
     text-align: center;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"], input[type = "CPF"], input[typy="Data nascimento"],input[type="Celular"] 
+{
     width: 100%;
     padding: 10px;
     margin: 12px 0;
