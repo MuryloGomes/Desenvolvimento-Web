@@ -29,7 +29,7 @@ body {
     padding: 33px;
     margin: 33px;
     background-color: rgba(255, 255, 255, 0.8); /* Branco com 80% de opacidade */
-    border-radius: 15px;
+    border-radius: 25px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -53,7 +53,7 @@ input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border-radius: 5px;
+    border-radius: 15px;
     border: 1px solid #ccc;
 }
 
@@ -67,7 +67,7 @@ button {
     background: linear-gradient(#0073e6, #031846);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     width: 100%;
 }
@@ -80,7 +80,7 @@ button:hover {
 @media (max-width: 768px) {
     .conteiner {
         padding: 15px;
-        border-radius: 10px;
+        border-radius: 15px;
     }
 
     input[type="text"],
