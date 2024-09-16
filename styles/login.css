@@ -1,3 +1,11 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais para o body */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -8,29 +16,49 @@ body {
     margin: 0;
     background: url('../imagens/cruzeiro-torcida1.jpg.crdownload') no-repeat center center fixed;
     background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5); /* Preto com 50% de opacidade */
 }
 
-
-.login-container {
-    background-color: #e1e8f7;
+/* Estilos do contêiner de login */
+#divlogin {
+    background-color: rgba(225, 232, 247, 0.8); /* Fundo branco com 80% de opacidade */
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 100%;
+    max-width: 400px; /* Largura máxima */
+    box-sizing: border-box;
     text-align: center;
 }
 
-input[type="text"], input[type="password"] {
+/* Estilos dos labels e inputs */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin: 12px 0;
+    margin-bottom: 15px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Estilos do botão */
 button {
     padding: 10px 20px;
-    background: linear-gradient(#0073e6 , #031846);
+    background: linear-gradient(#0073e6, #031846);
     color: white;
     border: none;
     border-radius: 5px;
@@ -40,4 +68,39 @@ button {
 
 button:hover {
     background-color: #005bb5;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #divlogin {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        padding: 8px;
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    #divlogin {
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        padding: 6px;
+    }
+
+    button {
+        padding: 6px 12px;
+    }
 }

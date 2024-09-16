@@ -7,33 +7,40 @@
     <link rel="stylesheet" href="../styles/register.css"> 
 </head>
 <body>
-    <form id="cadastroForm">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required><br>
+    <div class="conteiner">
+        <div class="retangulo"></div>
+        <div class="teste">
+            <form id="cadastroForm">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required><br>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
 
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone"><br>
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone"><br>
+                <!--acho que o type devia ser tel-->
 
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" name="cpf"><br>
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf"><br>
 
-        <label for="dataNascimento">Data de Nascimento:</label>
-        <input type="date" id="dataNascimento" name="dataNascimento"><br>
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" id="dataNascimento" name="dataNascimento"><br>
 
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required><br>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" maxlength="8" minlength="8" required><br>
 
-        <label for="termos">
-            <input type="checkbox" id="termos" name="termos" required>
-            Aceito os termos e condições
-        </label><br>
+                <label for="termos">
+                    <input type="checkbox" id="termos" name="termos" required>
+                    Aceito os termos e condições
+                </label><br>
+            
 
-        <button type="submit">Cadastrar</button>
-    </form>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
 
-    <script src="../script/register.js"></script>
-</body>
+        <script src="../script/register.js"></script>
+    </body>
 </html>

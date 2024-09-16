@@ -13,7 +13,6 @@ body {
     background-color: #e1e8f7;
     margin: 0;
     padding: 0;
-    background: url('../imagens/cruzeiro-torcida1.jpg.crdownload') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -21,14 +20,18 @@ body {
 .headerr {
     display: flex;
     justify-content: space-between;
-
     background: linear-gradient(#0073e6 , #031846);
     color: white;
     padding: 20px 0;
 }
 
 .mainn {
-  height: 888px;
+  background-image: url('../imagens/cruzeiro-torcida1.jpg.crdownload');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; /* Impede a repetição da imagem */
+  width: 100%; /* Ajuste conforme necessário */
+  height: 100vh; /* Ajuste conforme necessário */
 }
 
 #boneco {
@@ -44,10 +47,6 @@ body {
 #botoes {
     display: flex;
     flex-direction: column;
-}
-
-main {
-    margin-top: 50px;
 }
 
 button {
