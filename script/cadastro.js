@@ -1,5 +1,33 @@
-
 const url = "https://go-wash-api.onrender.com/api/user"; 
+
+// Cadastro de Usuário
+document.getElementById('cadastroForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    
+    // Captura os valores do formulário
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const telefone = document.getElementById('telefone').value;
+    const cpf = document.getElementById('cpf').value;
+    const dataNascimento = document.getElementById('dataNascimento').value;
+    
+    // Armazenamento de dados
+    const usuario = {
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        cpf: cpf,
+        dataNascimento: dataNascimento
+    };
+    
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+
+    alert('Cadastro concluído com sucesso!');
+});
+
+
+
+
 async function cadastroUsuario(){
     let name = document.getElementById('name').value
     let email = document.getElementById('email').value
@@ -27,6 +55,8 @@ async function cadastroUsuario(){
     let respostaErro = await api.json();
         console.log(respostaErro.data.errors.cpf_cnpj)
 }
+
+
 
 // Cadastro de Usuário
 document.getElementById('cadastroForm').addEventListener('submit', function (e) {
