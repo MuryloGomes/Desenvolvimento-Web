@@ -68,7 +68,10 @@ button {
 
 button:hover {
     background-color: #005bb5;
+    line-height: 19.36px;
 }
+
+
 
 /* Responsividade */
 @media (max-width: 768px) {
