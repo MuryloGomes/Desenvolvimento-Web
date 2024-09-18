@@ -3,36 +3,25 @@ const url = "https://go-wash-api.onrender.com/api/user";
 async function cadastroUsuario() {
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
-    const cpfOriginal = document.getElementById('cpf').value;
+    const cpf = document.getElementById('cpf').value.replace(/\D/g, '');
     const dataNascimento = document.getElementById('dataNascimento').value;
     const senha = document.getElementById('senha').value;
-    const termos = document.getElementById('termos').checked;
-
-    // Remover pontos e traços do CPF
-    const cpf = cpfOriginal.replace(/\D/g, '');
-
-    if (!termos) {
-        alert('Você precisa aceitar os termos e condições para se cadastrar.');
-        return;
-    }
 
     try {
         let response = await fetch(url, {
             method: "POST",
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                "name": nome,
-                "email": email,
-                "user_type_id": 1,
-                "password": senha,
-                "cpf_cnpj": cpf,
-                "terms": termos ? 1 : 0,
-                "birthday": dataNascimento
+                name: nome, // "nome" deve ser "name" se a API esperar "name"
+                email: email,
+                user_type_id: 1,
+                password: senha, // "senha" deve ser "password" se a API esperar "password"
+                cpf_cnpj: cpf, // Use "cpf_cnpj" se a API esperar isso
+                terms: 1, // Enviando como 1, já que a API faz a checagem
+                birthday: dataNascimento // Use "birthday" se a API esperar isso
             }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
         });
-
+        
         if (response.ok) {
             let data = await response.json();
             console.log('Cadastro bem-sucedido:', data);
@@ -45,46 +34,28 @@ async function cadastroUsuario() {
             }));
             alert('Cadastro concluído com sucesso! Um e-mail de confirmação foi enviado.');
         } else {
-            const textResponse = await response.text();
-            console.error('Erro ao cadastrar:', textResponse);
+            const errors = await response.json();
+            const errorMessages = errors.data?.errors || {};
+            let mensagem = '';
 
-            let erros = [];
-
-            // Tenta analisar como JSON para mensagens específicas
-            try {
-                let errorData = JSON.parse(textResponse);
-                if (errorData.data && errorData.data.errors) {
-                    const errorMessages = errorData.data.errors;
-
-                    if (errorMessages.email && errorMessages.cpf_cnpj) {
-                        erros.push('CPF e e-mail já estão em uso.');
-                    } else if (errorMessages.email) {
-                        erros.push('O e-mail informado já está em uso.');
-                    } else if (errorMessages.cpf_cnpj) {
-                        erros.push('O CPF informado já está em uso.');
-                    }
-                }
-            } catch (jsonError) {
-                console.error('Erro ao analisar JSON:', jsonError);
-                alert('Ocorreu um erro inesperado. Por favor, tente novamente.');
-            }
-
-            // Exibir todos os erros se existirem
-            if (erros.length > 0) {
-                alert(`Erro: ${erros.join(' ')}`);
+            if (errorMessages.email && errorMessages.cpf_cnpj) {
+                mensagem = 'O CPF e o e-mail informados já estão em uso.';
+            } else if (errorMessages.email) {
+                mensagem = 'O e-mail informado já está em uso.';
+            } else if (errorMessages.cpf_cnpj) {
+                mensagem = 'O CPF informado já está em uso.';
             } else {
-                alert('Erro: Verifique os dados e tente novamente.');
+                mensagem = 'Verifique os dados e tente novamente.';
             }
+
+            alert(`Erro: ${mensagem}`);
         }
-    } catch (error) {
-        console.error('Erro na requisição:', error);
+    } catch {
         alert('Ocorreu um erro ao tentar cadastrar. Por favor, tente novamente.');
     }
 }
 
-document.getElementById('cadastroForm').addEventListener('submit', function (e) {
+document.getElementById('cadastroForm').addEventListener('submit', e => {
     e.preventDefault();
     cadastroUsuario();
 });
-
-
