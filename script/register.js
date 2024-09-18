@@ -3,11 +3,13 @@ const url = "https://go-wash-api.onrender.com/api/user";
 async function cadastroUsuario() {
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
-    const telefone = document.getElementById('telefone').value;
-    const cpf = document.getElementById('cpf').value;
+    const cpfOriginal = document.getElementById('cpf').value;
     const dataNascimento = document.getElementById('dataNascimento').value;
     const senha = document.getElementById('senha').value;
     const termos = document.getElementById('termos').checked;
+
+    // Remover pontos e traços do CPF
+    const cpf = cpfOriginal.replace(/\D/g, '');
 
     if (!termos) {
         alert('Você precisa aceitar os termos e condições para se cadastrar.');
@@ -21,9 +23,9 @@ async function cadastroUsuario() {
                 "name": nome,
                 "email": email,
                 "user_type_id": 1,
-                "password": senha,  // Inclua a senha aqui
+                "password": senha,
                 "cpf_cnpj": cpf,
-                "terms": termos ? 1 : 0,  // Inclua o valor de aceitação dos termos (1 para aceito, 0 para não aceito)
+                "terms": termos ? 1 : 0,
                 "birthday": dataNascimento
             }),
             headers: {
@@ -37,15 +39,42 @@ async function cadastroUsuario() {
             localStorage.setItem('usuario', JSON.stringify({
                 nome: nome,
                 email: email,
-                telefone: telefone,
                 cpf: cpf,
-                dataNascimento: dataNascimento
+                dataNascimento: dataNascimento,
+                senha: senha
             }));
             alert('Cadastro concluído com sucesso! Um e-mail de confirmação foi enviado.');
         } else {
-            let errorData = await response.json();
-            console.error('Erro ao cadastrar:', errorData);
-            alert(`Erro ao cadastrar: ${errorData.message || 'Verifique os dados e tente novamente.'}`);
+            const textResponse = await response.text();
+            console.error('Erro ao cadastrar:', textResponse);
+
+            let erros = [];
+
+            // Tenta analisar como JSON para mensagens específicas
+            try {
+                let errorData = JSON.parse(textResponse);
+                if (errorData.data && errorData.data.errors) {
+                    const errorMessages = errorData.data.errors;
+
+                    if (errorMessages.email && errorMessages.cpf_cnpj) {
+                        erros.push('CPF e e-mail já estão em uso.');
+                    } else if (errorMessages.email) {
+                        erros.push('O e-mail informado já está em uso.');
+                    } else if (errorMessages.cpf_cnpj) {
+                        erros.push('O CPF informado já está em uso.');
+                    }
+                }
+            } catch (jsonError) {
+                console.error('Erro ao analisar JSON:', jsonError);
+                alert('Ocorreu um erro inesperado. Por favor, tente novamente.');
+            }
+
+            // Exibir todos os erros se existirem
+            if (erros.length > 0) {
+                alert(`Erro: ${erros.join(' ')}`);
+            } else {
+                alert('Erro: Verifique os dados e tente novamente.');
+            }
         }
     } catch (error) {
         console.error('Erro na requisição:', error);
@@ -57,3 +86,5 @@ document.getElementById('cadastroForm').addEventListener('submit', function (e) 
     e.preventDefault();
     cadastroUsuario();
 });
+
+
