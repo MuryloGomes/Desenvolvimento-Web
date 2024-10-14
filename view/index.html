@@ -17,12 +17,12 @@
             <img src="../imagens/logoimpacta.png" alt="logo impacta" id="logo_impacta">
         </a>
         <div id="botoes">
-            <!--<button onclick="window.location.href='./login/login.html'">Login</button>-->
-            <!--<button onclick="window.location.href='../view/cadastro.html'">Cadastro</button>-->
-            <a href="../view/login.html">Login</a>
-            <a href="../view/cadastro.html">Cadastro</a>
-            <a href="noticias.html">Notícias</a>
-            <a href="../view/endereco.html">Cadastrar Endereço</a>
+            <a href="../view/dois.html" id="linkLogin" style="display: none;">Login</a>
+            <!--<a href="../view/cadastro.html">Cadastro</a>-->
+            <!--<a href="noticias.html">Notícias</a>-->
+            <a href="../view/enderecomurylo.html" id="linkCadastrarEndereco" style="display: none;">Cadastrar Endereço</a>
+            <a id="linkLogout" style="display: none;">Logout</a>
+            <button id="btnLogout" style="display: none;">Logout</button>
             
         </div>
         <style>
@@ -59,6 +59,8 @@
     </header>
     
     <main class="mainn">
+      <br>
+      <br>
         <h1><i>Seja sócio torcedor do team impacta</i></h1>
         <h2>VOCÊ AINDA MAIS PERTO DA FACULDADE</h2>
         <p><i>Viva experiências incríveis ao lado do Mais Querido com benefícios exclusivos</i></p>
@@ -149,6 +151,37 @@
             </div>
           </div>
     </main>
+    <section class="noticias">
+      <h2>Últimas Notícias</h2>
+      <div class="noticias-container">
+          <div class="noticia-card">
+              <img src="../imagens/i.png" alt="Notícia 1" class="noticia-imagem">
+              <h3>PROXIMO CONFRONTO</h3>
+              <p>O nosso proximo compromisso sera contra o Corinthians. Partida valida para o Campeonato Brasileiro 2024.</p>
+          </div>
+          <div class="noticia-card">
+              <img src="../imagens/centenarioreforma.webp" alt="Notícia 2" class="noticia-imagem">
+              <h3>ESTADIO EM REFORMA</h3>
+              <p>Em breve, nosso estádio passará por reformas significativas! Estamos aumentando a capacidade da arquibancada para acolher ainda mais torcedores e proporcionar uma experiência incrível para todos. Fique atento às novidades!</p>
+          </div>
+          <div class="noticia-card">
+              <img src="../imagens/792b30011969fbbf36a3720c8fdf2bb6.jpg" alt="Notícia 3" class="noticia-imagem">
+              <h3>NOTICIA URGENTE</h3>
+              <p>É com grande prazer que anunciamos um fato historico! O nosso Rival PALMEIRAS não tem MUNDIAL!!!!</p>
+          </div>
+      </div>
+  </section>
+  
+  <section class="proximo-jogo">
+      <h2>Próximo Jogo!</h2>
+      <p>Prepare-se para a grande batalha!</p>
+      <div class="jogo-info">
+          <h3>Impacta FC vs. Corinthians</h3>
+          <p><strong>Data:</strong> Sábado, 15 de Outubro</p>
+          <p><strong>Horário:</strong> 16:00</p>
+          <p><strong>Local:</strong> Arena Impacta</p>
+      </div>
+  </section>
     <br>
     <footer class="footer bg-dark text-white p-4">
         <div class="row">
@@ -199,18 +232,31 @@
             </div>
         </div>
       </div>
-      <div class="video-background">
-        <video autoplay muted loop>
-            <source src="../imagens/videotorcida (online-video-cutter.com).mp4" type="video/mp4">
-            Seu navegador não suporta o vídeo.
-        </video>
-    </div>
     <div class="content">
 
       </footer>
-    <script src="../script/index.js"></script>
-    <a class="whatsapp-button" href="https://wa.me/5511987628803" target="_blank">
-  </a>
+    
   
+  <script>
+    // Verifica se o usuário está logado
+    const loggedIn = localStorage.getItem('loggedIn');
+
+    if (loggedIn) {
+        // Se o usuário estiver logado, exibe o link para cadastrar endereço e o botão de logout
+        document.getElementById('linkCadastrarEndereco').style.display = 'block';
+        document.getElementById('linkLogout').style.display = 'block'; // Exibir link de logout
+    } else {
+        // Se o usuário não estiver logado, exibe o link de login
+        document.getElementById('linkLogin').style.display = 'block';
+    }
+
+    // Função para deslogar usando o link de logout
+    document.getElementById('linkLogout').addEventListener('click', function(event) {
+        event.preventDefault(); // Previne o comportamento padrão do link
+        localStorage.removeItem('loggedIn'); // Remove o item de login
+        alert("Deslogado com sucesso!");
+        window.location.href = "../view/index.html"; // Redireciona para a página de login
+    });
+</script>
 </body>
 </html>

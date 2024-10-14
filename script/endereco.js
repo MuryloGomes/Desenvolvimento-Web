@@ -39,3 +39,4 @@ document.getElementById('enderecoForm').addEventListener('submit', async functio
         alert('Erro ao cadastrar o endereço: ' + error.message);
     }
 });
+

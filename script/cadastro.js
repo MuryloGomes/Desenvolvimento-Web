@@ -73,3 +73,12 @@ document.getElementById('cadastroForm').addEventListener('submit', e => {
     e.preventDefault(); // impede que o formulário seja enviado recarregando a página
     cadastroUsuario(); // chama a função para cadastrar o usuário
 });
+
+ // Verifica se o usuário está logado
+ const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+ if (usuario) {
+     // Se o usuário estiver logado, exibe o link para cadastrar endereço
+     document.getElementById('linkCadastrarEndereco').style.display = 'block';
+     document.getElementById('linkLogin').style.display = 'none'; // Opcional: ocultar link de login
+ }

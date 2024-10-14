@@ -12,13 +12,13 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
-  background: url('../imagens/cruzeiro-torcida1.jpg.crdownload') no-repeat center center fixed;
+  /*background: url('../imagens/cruzeiro-torcida1.jpg.crdownload') no-repeat center center fixed;*/
   background-size: cover;
 }
 
 /* Estilo para o logo */
 #logo_impacta {
-  height: 60px; /* Diminuído para ficar mais harmonioso */
+  height: 77px; /* Diminuído para ficar mais harmonioso */
 }
 
 /* Estilos do header */
@@ -26,14 +26,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(#0073e6, #031846);
+  /*background: linear-gradient(#0073e6, #031846);*/
+  background-color: #005bb5;
   color: white;
   padding: 15px 5%; /* Reduzido o padding para um cabeçalho mais compacto */
-}
-
-#boneco {
-  width: 140px; /* Diminuído para caber melhor no cabeçalho */
-  height: 140px;
 }
 
 #botoes {
@@ -49,11 +45,10 @@ a {
   text-decoration: none;
   color: #ffffff;
   border-radius: 4px; /* Arredondamento mais sutil */
-  background: #005bb5; /* Cor de fundo para os links */
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-a:hover {
+/*a:hover {
   background: #0073e6;
   color: #fff;
 }
@@ -63,7 +58,7 @@ body, html {
   padding: 0;
   height: 100%;
   overflow-y: auto; /* Garante que a rolagem vertical funcione */
-}
+/*
 
 .video-background {
   position: absolute;
@@ -73,18 +68,18 @@ body, html {
   height: 100%;
   overflow: hidden;
   z-index: -1; /* Coloca o vídeo atrás do conteúdo */
-}
 
+/*
 .video-background video {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Faz o vídeo cobrir toda a área */
-}
 
+/*
 .content {
   position: relative;
   z-index: 1; /* Coloca o conteúdo na frente do vídeo */
-  color: rgb(10, 10, 10);
+  /*color: rgb(10, 10, 10);
   text-align: center;
   padding: 20px;
 }
@@ -93,9 +88,11 @@ body {
   background-size: cover;
   background-position: center;
   overflow-y: auto; /* Garante que a rolagem vertical funcione */
+
+
+#linkLogout {
+  cursor: pointer;
 }
-
-
 
 a {
   display: inline-block;
@@ -116,8 +113,6 @@ a:hover {
 #boneco {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(235, 232, 232, 0.3);
 }
 
 /* Estilo dos botões */
@@ -131,7 +126,7 @@ button {
   padding: 15px 30px;
   font-size: 16px;
   cursor: pointer;
-  background: linear-gradient(#0073e6, #031846);
+  background:#0073e6;
   color: #fff;
   border: none;
   border-radius: 40px;
@@ -343,4 +338,65 @@ footer {
   button {
       padding: 8px 16px;
   }
+}
+
+.noticias {
+  padding: 40px 20px;
+  background-color: #f3f1f1(255, 255, 255, 0.9); /* Fundo branco levemente transparente */
+  color: #000; /* Cor do texto */
+}
+
+.noticias-container {
+  display: flex;
+  justify-content: space-around; /* Espaço igual entre os cards */
+  flex-wrap: wrap; /* Permite que os cards se movam para a linha seguinte se não houver espaço */
+}
+
+.noticia-card {
+  background-color: #fffdfd; /* Fundo dos cards */
+  border: 1px solid #0073e6; /* Borda leve */
+  border-radius: 8px; /* Cantos arredondados */
+  width: 300px; /* Largura fixa dos cards */
+  margin: 10px; /* Margem entre os cards */
+  text-align: center; /* Centraliza texto e imagens */
+  padding: 15px; /* Padding interno dos cards */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  transition: transform 0.3s; /* Efeito de transição */
+}
+
+.noticia-card:hover {
+  transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+.noticia-imagem {
+  width: 100%; /* Imagem ocupa toda a largura do card */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 8px; /* Cantos arredondados da imagem */
+}
+
+
+.proximo-jogo {
+  background-color: #f4f6f8; /* Cor de fundo azul */
+  color: #0a0a0a; /* Cor do texto branco */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.jogo-info {
+  margin-top: 10px;
+}
+
+.proximo-jogo h2 {
+  font-size: 24px;
+}
+
+.proximo-jogo h3 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.proximo-jogo p {
+  font-size: 16px;
 }
