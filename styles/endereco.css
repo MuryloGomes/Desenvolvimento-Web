@@ -1,0 +1,103 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais para o body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url('../imagens/cruzeiro-torcida1.jpg.crdownload') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Estilos do contêiner */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos do formulário */
+.form-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Estilos dos labels e inputs */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+}
+
+/* Estilos do botão */
+button {
+    padding: 10px 20px;
+    background: linear-gradient(#0073e6, #031846);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        padding: 8px;
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        padding: 6px;
+    }
+
+    button {
+        padding: 6px 12px;
+    }
+}
