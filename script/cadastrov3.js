@@ -1,52 +1,90 @@
-const url = "https://go-wash-api.onrender.com/api/user";
+const urlApi = "https://go-wash-api.onrender.com/api/user";
 
 async function cadastroUsuario() {
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const cpf = document.getElementById('cpf').value.replace(/\D/g, ''); // Remove formatação
-    const dataNascimento = document.getElementById('dataNascimento').value;
-    const senha = document.getElementById('senha').value;
+    const nomeUsuario = document.getElementById('nome').value;
+    const emailUsuario = document.getElementById('email').value; 
+    const cpfUsuario = document.getElementById('cpf').value.replace(/\D/g, '');
+    const dataNascimentoUsuario = document.getElementById('dataNascimento').value; 
+    const senhaUsuario = document.getElementById('senha').value; 
 
     try {
-        const response = await fetch(url, {
-            method: "POST",
+        let resposta = await fetch(urlApi, { 
+            method: "POST", 
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                name: nome,
-                email: email,
+            body: JSON.stringify({  
+                name: nomeUsuario,
+                email: emailUsuario, 
                 user_type_id: 1,
-                password: senha,
-                cpf_cnpj: cpf,
-                terms: 1,
-                birthday: dataNascimento
-            })
+                password: senhaUsuario, 
+                cpf_cnpj: cpfUsuario, 
+                terms: 1, 
+                birthday: dataNascimentoUsuario 
+            }),
         });
+        
+        if (resposta.ok) { 
+            let dados = await resposta.json(); 
+            console.log('Cadastro bem-sucedido:', dados); 
+            localStorage.setItem('usuario', JSON.stringify({ 
+                nome: nomeUsuario, 
+                email: emailUsuario, 
+                cpf: cpfUsuario, 
+                dataNascimento: dataNascimentoUsuario,
+                senha: senhaUsuario 
+            }));
+            alert('Cadastro concluído com sucesso! Um e-mail de confirmação foi enviado.'); 
+        } else {
+            const erros = await resposta.json(); 
+            const mensagensDeErro = erros.data?.errors || {}; 
+            let mensagem = ''; 
 
-        if (response.ok) {
-            alert('Cadastro concluído com sucesso! Um e-mail de confirmação foi enviado.');
-            return;
+            if (mensagensDeErro.email && mensagensDeErro.cpf_cnpj) { 
+                mensagem = 'O CPF e o e-mail informados já estão em uso.'; 
+            } else if (mensagensDeErro.email) { 
+                mensagem = 'O e-mail informado já está em uso.'; 
+            } else if (mensagensDeErro.cpf_cnpj) { 
+                mensagem = 'O CPF informado já está em uso.';
+            }
+
+            alert(`Erro: ${mensagem}`); 
         }
-
-        const errorData = await response.json();
-        const errors = errorData.data?.errors || {};
-        let errorMessage = 'Verifique os dados e tente novamente.';
-
-        if (errors.email) {
-            errorMessage = 'O e-mail informado já está em uso.';
-        }
-        if (errors.cpf_cnpj) {
-            errorMessage = (errorMessage === 'Verifique os dados e tente novamente.') 
-                ? 'O CPF informado já está em uso.' 
-                : 'O CPF e o e-mail informados já estão em uso.';
-        }
-
-        alert(`Erro: ${errorMessage}`);
-    } catch {
+    } catch { 
         alert('Ocorreu um erro ao tentar cadastrar. Por favor, tente novamente.');
     }
 }
 
-document.getElementById('cadastroForm').addEventListener('submit', function (e) {
+function cadastroEndereco() {
+    const endereco = {
+        rua: document.getElementById('rua').value,
+        numero: document.getElementById('numero').value,
+        bairro: document.getElementById('bairro').value,
+        cidade: document.getElementById('cidade').value,
+        estado: document.getElementById('estado').value,
+    };
+
+    // Pega todos os endereços do localStorage ou inicia um array vazio
+    const enderecos = JSON.parse(localStorage.getItem('enderecos')) || [];
+
+    // Verifica se o endereço já está cadastrado
+    const enderecoExistente = enderecos.find(e => e.rua === endereco.rua && e.numero === endereco.numero);
+
+    if (!enderecoExistente) {
+        // Se o endereço não existir, adiciona ao array
+        enderecos.push(endereco);
+        localStorage.setItem('enderecos', JSON.stringify(enderecos));
+        alert('Novo cadastro de endereço realizado com sucesso!');
+    } else {
+        alert('Esse endereço já está cadastrado.');
+    }
+}
+
+document.getElementById('cadastroForm').addEventListener('submit', e => {
+    e.preventDefault(); 
+    cadastroUsuario(); 
+});
+
+// Adicione um evento para o formulário de cadastro de endereço
+document.getElementById('cadastroEnderecoForm').addEventListener('submit', e => {
     e.preventDefault();
-    cadastroUsuario();
+    cadastroEndereco();
 });

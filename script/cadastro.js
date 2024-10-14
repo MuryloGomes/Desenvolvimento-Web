@@ -1,24 +1,22 @@
 const urlApi = "https://go-wash-api.onrender.com/api/user";
 
 // o async permite que essa função tenha o uso de await
+// o async permite que essa função tenha o uso de await
 async function cadastroUsuario() {
-    // usamos variáveis para armazenar os valores dos campos do formulário
+    // Mostra o carregador
+    document.getElementById('loader').style.display = 'block';
+
     const nomeUsuario = document.getElementById('nome').value;
     const emailUsuario = document.getElementById('email').value; 
     const cpfUsuario = document.getElementById('cpf').value.replace(/\D/g, '');
     const dataNascimentoUsuario = document.getElementById('dataNascimento').value; 
     const senhaUsuario = document.getElementById('senha').value; 
 
-    // o bloco try é usado para tentar executar o código dentro dele
-    // Se ocorrer um erro, o código pula para o bloco catch
     try {
-        // criamos a variavel resposta para armazenar a resposta da nossa requisição
         let resposta = await fetch(urlApi, { 
-            //await indica que a execução do código deve pausar até que a requisição seja concluída e a resposta seja recebida
-            method: "POST", // indica que estamos enviando dados
-            headers: { 'Content-Type': 'application/json' }, //informa que estamos enviando dados no formato json
-            body: JSON.stringify({  //body contem os dados que estamos enviando
-                //atribui os nossos input do formulario para a chave de cada propriedade da api
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({  
                 name: nomeUsuario,
                 email: emailUsuario, 
                 user_type_id: 1,
@@ -28,6 +26,9 @@ async function cadastroUsuario() {
                 birthday: dataNascimentoUsuario 
             }),
         });
+
+        // Esconde o carregador após a resposta
+        document.getElementById('loader').style.display = 'none';
         
         // verifica se a resposta da API foi bem sucedida
         if (resposta.ok) { 

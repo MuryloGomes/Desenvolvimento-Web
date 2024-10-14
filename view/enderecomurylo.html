@@ -86,7 +86,7 @@
         }
 
         let titulo = document.getElementById('titulo').value;
-        let cep = document.getElementById('cep').value;
+        let cep = document.getElementById('cep').value.replace(/\D/g, ''); // Remove qualquer caractere não numérico
         let logradouro = document.getElementById('logradouro').value;
         let numero = document.getElementById('numero').value;
         let complemento = document.getElementById('complemento').value;
@@ -98,8 +98,8 @@
             valido = false;
         }
 
-        if (!cep.match(/^\d{5}-\d{3}$/)) {
-            mostrarErro('erroCep', "O CEP deve estar no formato XXXXX-XXX.");
+        if (cep.length !== 8) {
+            mostrarErro('erroCep', "O CEP deve ter 8 dígitos.");
             valido = false;
         }
 
@@ -115,7 +115,24 @@
 
         if (!valido) return;
 
-        // Enviando apenas os dados necessários
+        // Checa se o endereço já foi cadastrado pelo usuário atual
+        const enderecos = JSON.parse(localStorage.getItem('enderecos')) || [];
+        const usuarioId = token; // Ou um identificador de usuário, se você tiver
+
+        const enderecoExistente = enderecos.find(e => 
+            e.usuarioId === usuarioId && // Verifica se o endereço é do mesmo usuário
+            e.titulo === titulo && 
+            e.cep === cep && 
+            e.logradouro === logradouro &&
+            e.numero === numero
+        );
+
+        if (enderecoExistente) {
+            alert('Esse endereço já está cadastrado por você.');
+            return;
+        }
+
+        // Se não existir, enviar para a API
         fetch('https://go-wash-api.onrender.com/api/auth/address', {
             method: "POST",
             headers: {
@@ -137,6 +154,17 @@
             return resposta.json();
         })
         .then(resposta => {
+            // Armazena o novo endereço no localStorage com o ID do usuário
+            enderecos.push({
+                usuarioId: usuarioId, // Armazena o ID do usuário
+                titulo: titulo,
+                cep: cep,
+                logradouro: logradouro,
+                numero: numero,
+                complemento: complemento
+            });
+            localStorage.setItem('enderecos', JSON.stringify(enderecos));
+            alert('Cadastro novo realizado com sucesso!'); // Alerta de sucesso
             document.getElementById('mensagemSucesso').textContent = "Novo endereço cadastrado com sucesso!";
             limparErros();
             document.getElementById('formCadastro').reset();
@@ -169,3 +197,6 @@
 </script>
 </body>
 </html>
+
+
+
