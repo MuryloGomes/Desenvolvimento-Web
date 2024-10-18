@@ -1,147 +1,79 @@
-document.getElementById('cep').addEventListener('input', function() {
-    const cep = this.value.replace(/\D/g, '');
+const url = "https://go-wash-api.onrender.com/api/auth/address"; // Defina a URL correta
 
-    if (cep.length === 0) {
-        limparCampos();
-        limparErros();
+async function cadastroEndereco() {
+    // Exibir o loader
+    document.getElementById('loader').style.display = 'block';
+
+    let title = document.getElementById('title').value.trim();
+    let cep = document.getElementById('cep').value.trim();
+    let address = document.getElementById('address').value.trim();
+    let number = document.getElementById('number').value.trim();
+    let complement = document.getElementById('complement').value.trim();
+
+    // Validação dos campos
+    if (!title) {
+        alert("O campo Título não pode estar vazio.");
+        document.getElementById('loader').style.display = 'none'; // Esconder o loader
         return;
     }
 
-    if (cep.length === 8) {
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then(resposta => resposta.json())
-            .then(dados => {
-                if (!dados.erro) {
-                    document.getElementById('logradouro').value = dados.logradouro || '';
-                    document.getElementById('cidade').value = dados.localidade || '';
-                    document.getElementById('estado').value = dados.uf || '';
-                    limparErros();
-                } else {
-                    alert('CEP não encontrado.');
-                }
+    if (!cep.match(/^\d{5}-\d{3}$/)) {
+        alert("O CEP deve estar no formato XXXXX-XXX.");
+        document.getElementById('loader').style.display = 'none'; // Esconder o loader
+        return;
+    }
+
+    if (!address) {
+        alert("O campo Logradouro não pode estar vazio.");
+        document.getElementById('loader').style.display = 'none'; // Esconder o loader
+        return;
+    }
+
+    if (!number || isNaN(number)) {
+        alert("O Número deve ser um valor numérico válido.");
+        document.getElementById('loader').style.display = 'none'; // Esconder o loader
+        return;
+    }
+
+    try {
+        const API = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: title,
+                cep: cep,
+                address: address,
+                number: number,
+                complement: complement
             })
-            .catch(erro => console.error('Erro ao buscar endereço:', erro));
-    }
-});
-
-document.getElementById('formCadastro').addEventListener('submit', function(evento) {
-    evento.preventDefault();
-    limparErros();
-
-    const token = localStorage.getItem("accessToken");
-
-    if (!token) {
-        alert("Token não encontrado. Faça login.");
-        return;
-    }
-
-    let titulo = document.getElementById('titulo').value;
-    let cep = document.getElementById('cep').value.replace(/\D/g, ''); // Remove qualquer caractere não numérico
-    let logradouro = document.getElementById('logradouro').value;
-    let numero = document.getElementById('numero').value;
-    let complemento = document.getElementById('complemento').value;
-
-    let valido = true;
-
-    if (!titulo) {
-        mostrarErro('erroTitulo', "O campo Título é obrigatório.");
-        valido = false;
-    }
-
-    if (cep.length !== 8) {
-        mostrarErro('erroCep', "O CEP deve ter 8 dígitos.");
-        valido = false;
-    }
-
-    if (!logradouro) {
-        mostrarErro('erroLogradouro', "O campo Logradouro é obrigatório.");
-        valido = false;
-    }
-
-    if (!numero || isNaN(numero)) {
-        mostrarErro('erroNumero', "O Número é obrigatório e deve ser um valor numérico válido.");
-        valido = false;
-    }
-
-    if (!valido) return;
-
-    // Checa se o endereço já foi cadastrado pelo usuário atual
-    const enderecos = JSON.parse(localStorage.getItem('enderecos')) || [];
-    const usuarioId = token; // Ou um identificador de usuário, se você tiver
-
-    const enderecoExistente = enderecos.find(e => 
-        e.usuarioId === usuarioId && // Verifica se o endereço é do mesmo usuário
-        e.titulo === titulo && 
-        e.cep === cep && 
-        e.logradouro === logradouro &&
-        e.numero === numero
-    );
-
-    if (enderecoExistente) {
-        alert('Esse endereço já está cadastrado por você.');
-        return;
-    }
-
-    // Se não existir, enviar para a API
-    fetch('https://go-wash-api.onrender.com/api/auth/address', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-            title: titulo,
-            cep: cep,
-            address: logradouro,
-            number: numero,
-            complement: complemento
-        })
-    })
-    .then(resposta => {
-        if (!resposta.ok) {
-            throw new Error('Erro ao cadastrar endereço');
-        }
-        return resposta.json();
-    })
-    .then(resposta => {
-        // Armazena o novo endereço no localStorage com o ID do usuário
-        enderecos.push({
-            usuarioId: usuarioId, // Armazena o ID do usuário
-            titulo: titulo,
-            cep: cep,
-            logradouro: logradouro,
-            numero: numero,
-            complemento: complemento
         });
-        localStorage.setItem('enderecos', JSON.stringify(enderecos));
-        alert('Cadastro novo realizado com sucesso!'); // Alerta de sucesso
-        document.getElementById('mensagemSucesso').textContent = "Novo endereço cadastrado com sucesso!";
-        limparErros();
-        document.getElementById('formCadastro').reset();
-    })
-    .catch(erro => {
-        document.getElementById('mensagemErro').textContent = "Erro ao cadastrar endereço: " + erro.message;
-    });
+
+        const resposta = await API.json();
+
+        // Esconder o loader após a resposta
+        document.getElementById('loader').style.display = 'none'; 
+
+        if (API.ok) {
+            alert("Cadastro realizado com sucesso!");
+            window.location.href = "index.html";
+        } else {
+            if (resposta.message && resposta.message.includes("endereço já cadastrado")) {
+                alert("Você já cadastrou esse endereço anteriormente.");
+            } else {
+                console.error(resposta);
+                alert("Erro ao cadastrar o endereço. Verifique os dados e tente novamente.");
+            }
+        }
+    } catch (error) {
+        document.getElementById('loader').style.display = 'none'; // Esconder o loader em caso de erro
+        console.error('Erro:', error); // Log do erro no console
+        alert("Erro de conexão. Tente novamente mais tarde. Detalhes: " + error.message);
+    }
+}
+
+document.getElementById('enderecoForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Impede o envio padrão do formulário
+    cadastroEndereco(); // Chama a função de cadastro
 });
-
-function mostrarErro(elementoId, mensagem) {
-    document.getElementById(elementoId).textContent = mensagem;
-}
-
-function limparErros() {
-    const elementosErro = document.querySelectorAll('.erro');
-    elementosErro.forEach(el => el.textContent = '');
-    document.getElementById('mensagemSucesso').textContent = '';
-    document.getElementById('mensagemErro').textContent = '';
-    const camposEntrada = document.querySelectorAll('input');
-    camposEntrada.forEach(input => {
-        input.classList.remove('input-erro', 'input-valido');
-    });
-}
-
-function limparCampos() {
-    document.getElementById('logradouro').value = '';
-    document.getElementById('cidade').value = '';
-    document.getElementById('estado').value = '';
-}
-//
