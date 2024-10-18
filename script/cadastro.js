@@ -84,3 +84,9 @@ document.getElementById('cadastroForm').addEventListener('submit', e => {
      document.getElementById('linkLogin').style.display = 'none'; // Opcional: ocultar link de login
  }
  //
+ function toggleForms() {
+    const loginSection = document.getElementById('loginSection');
+    const cadastroSection = document.getElementById('cadastroSection');
+    loginSection.classList.toggle('active');
+    cadastroSection.classList.toggle('active');
+}
