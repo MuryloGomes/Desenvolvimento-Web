@@ -134,4 +134,30 @@ button:hover {
     100% { transform: rotate(360deg); }
 }
 
-/*
+.toggle-button {
+    cursor: pointer; /* Altera o cursor para um ponteiro */
+    color: blue; /* Opcional: altera a cor do texto */
+    text-decoration: underline; /* Opcional: sublinha o texto */
+}
+
+/* Estilos do botão */
+button {
+    padding: 10px 20px;
+    background: linear-gradient(#0073e6, #031846);
+    color: white;
+    border: 2px solid transparent; /* Define uma borda transparente */
+    border-radius: 15px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px; /* Tamanho fixo da fonte */
+    line-height: normal; /* Normaliza a altura da linha */
+    transition: background-color 0.3s, color 0.3s; /* Transição suave */
+    outline: none; /* Remove o contorno padrão do botão */
+}
+
+/* Efeito ao passar o mouse */
+button:hover {
+    background: white; /* Altera a cor de fundo para branco */
+    color: #0073e6; /* Altera a cor do texto para a cor do botão */
+    border: 2px solid #0073e6; /* Adiciona uma borda da cor do botão */
+}
