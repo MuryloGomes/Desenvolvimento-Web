@@ -4,6 +4,14 @@ async function cadastroEndereco() {
     // Exibir o loader
     document.getElementById('loader').style.display = 'block';
 
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+        alert("Token não encontrado. Faça login.");
+        document.getElementById('loader').style.display = 'none'; // Esconder o loader
+        return;
+    }
+
     let title = document.getElementById('title').value.trim();
     let cep = document.getElementById('cep').value.trim().replace(/\D/g, ''); // Remove caracteres não numéricos
     let address = document.getElementById('address').value.trim();
@@ -40,6 +48,7 @@ async function cadastroEndereco() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
                 title: title,
@@ -57,26 +66,34 @@ async function cadastroEndereco() {
 
         if (API.ok) {
             alert("Cadastro realizado com sucesso!");
-            window.location.href = "index.html";
+            window.location.href = "index.html"; // Direciona para index.html
         } else {
+            console.error(resposta);
             if (resposta.message && resposta.message.includes("endereço já cadastrado")) {
                 alert("Você já cadastrou esse endereço anteriormente.");
             } else {
-                console.error(resposta);
                 alert("Erro ao cadastrar o endereço. Verifique os dados e tente novamente.");
             }
         }
     } catch (error) {
         document.getElementById('loader').style.display = 'none'; // Esconder o loader em caso de erro
-        console.error('Erro:', error); // Log do erro no console
+        console.error('Erro:', error);
         alert("Erro de conexão. Tente novamente mais tarde. Detalhes: " + error.message);
     }
 }
 
 // Preencher automaticamente o endereço ao digitar o CEP
 document.getElementById('cep').addEventListener('input', async function () {
-    const cep = this.value.replace(/\D/g, '');
+    let cep = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
 
+    // Adiciona o traço automaticamente
+    if (cep.length > 5) {
+        cep = cep.slice(0, 5) + '-' + cep.slice(5, 8);
+    }
+
+    this.value = cep; // Atualiza o campo de entrada com o novo valor formatado
+
+    // Busca o endereço se o CEP tiver 8 dígitos
     if (cep.length === 8) {
         try {
             const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -84,9 +101,6 @@ document.getElementById('cep').addEventListener('input', async function () {
 
             if (!data.erro) {
                 document.getElementById('address').value = data.logradouro || '';
-                // Você pode adicionar campos para cidade e estado se desejar
-                // document.getElementById('cidade').value = data.localidade || '';
-                // document.getElementById('estado').value = data.uf || '';
             } else {
                 alert('CEP não encontrado.');
             }
@@ -103,3 +117,4 @@ document.getElementById('enderecoForm').addEventListener('submit', function (e) 
     e.preventDefault(); // Impede o envio padrão do formulário
     cadastroEndereco(); // Chama a função de cadastro
 });
+
