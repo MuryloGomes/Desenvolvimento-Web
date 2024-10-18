@@ -17,4 +17,4 @@ document.getElementById('linkLogout').addEventListener('click', function(event) 
     localStorage.removeItem('loggedIn'); // Remove o item de login
     alert("Deslogado com sucesso!");
     window.location.href = "../view/index.html"; // Redireciona para a página de login
-});
+});//

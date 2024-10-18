@@ -83,3 +83,4 @@ document.getElementById('cadastroForm').addEventListener('submit', e => {
      document.getElementById('linkCadastrarEndereco').style.display = 'block';
      document.getElementById('linkLogin').style.display = 'none'; // Opcional: ocultar link de login
  }
+ //
