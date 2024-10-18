@@ -5,7 +5,7 @@ async function cadastroEndereco() {
     document.getElementById('loader').style.display = 'block';
 
     let title = document.getElementById('title').value.trim();
-    let cep = document.getElementById('cep').value.trim();
+    let cep = document.getElementById('cep').value.trim().replace(/\D/g, ''); // Remove caracteres não numéricos
     let address = document.getElementById('address').value.trim();
     let number = document.getElementById('number').value.trim();
     let complement = document.getElementById('complement').value.trim();
@@ -17,14 +17,14 @@ async function cadastroEndereco() {
         return;
     }
 
-    if (!cep.match(/^\d{5}-\d{3}$/)) {
-        alert("O CEP deve estar no formato XXXXX-XXX.");
+    if (cep.length !== 8) {
+        alert("O CEP deve ter 8 dígitos.");
         document.getElementById('loader').style.display = 'none'; // Esconder o loader
         return;
     }
 
     if (!address) {
-        alert("O campo Logradouro não pode estar vazio.");
+        alert("O campo Rua não pode estar vazio.");
         document.getElementById('loader').style.display = 'none'; // Esconder o loader
         return;
     }
@@ -73,7 +73,33 @@ async function cadastroEndereco() {
     }
 }
 
+// Preencher automaticamente o endereço ao digitar o CEP
+document.getElementById('cep').addEventListener('input', async function () {
+    const cep = this.value.replace(/\D/g, '');
+
+    if (cep.length === 8) {
+        try {
+            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            const data = await response.json();
+
+            if (!data.erro) {
+                document.getElementById('address').value = data.logradouro || '';
+                // Você pode adicionar campos para cidade e estado se desejar
+                // document.getElementById('cidade').value = data.localidade || '';
+                // document.getElementById('estado').value = data.uf || '';
+            } else {
+                alert('CEP não encontrado.');
+            }
+        } catch (error) {
+            console.error('Erro ao buscar endereço:', error);
+        }
+    } else if (cep.length === 0) {
+        // Limpa o campo de endereço se o CEP estiver vazio
+        document.getElementById('address').value = '';
+    }
+});
+
 document.getElementById('enderecoForm').addEventListener('submit', function (e) {
     e.preventDefault(); // Impede o envio padrão do formulário
-    cadastroEndereco(); // Chama a função de cadastro
+    cadastroEndereco(); // Chama a função de cadastro
 });
