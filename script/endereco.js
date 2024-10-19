@@ -117,4 +117,3 @@ document.getElementById('enderecoForm').addEventListener('submit', function (e) 
     e.preventDefault(); // Impede o envio padrão do formulário
     cadastroEndereco(); // Chama a função de cadastro
 });
-

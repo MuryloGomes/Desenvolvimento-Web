@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sócio Torcedor</title>
     <link rel="stylesheet" href="../styles/styles.css">
-    
 </head>
 <body>
     <header>
@@ -24,39 +23,7 @@
             <a id="linkLogout" style="display: none;">Logout</a>
 
         </div>
-        <style>
-          
-          .whatsapp-button {
-              position: fixed;
-              bottom: 20px; 
-              right: 20px;  
-              width: 60px;  
-              height: 60px; 
-              background-color: #25D366; 
-              border-radius: 50%; 
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-              text-decoration: none;
-              z-index: 1000; 
-          }
-  
-          .whatsapp-button::before {
-              content: '';
-              display: block;
-              width: 30px; 
-              height: 30px;
-              background: url('https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg') no-repeat center;
-              background-size: contain; 
-          }
-  
-          .whatsapp-button:hover {
-              background-color: #128C7E; 
-          }
-      </style>
     </header>
-    
     <main class="mainn">
       <br>
       <br>
@@ -234,41 +201,6 @@
     <div class="content">
 
       </footer>
-    
-  
-      <script>
-        function updateButtonVisibility() {
-            const loggedIn = localStorage.getItem('loggedIn');
-    
-            if (loggedIn) {
-                document.getElementById('linkCadastrarEndereco').style.display = 'block';
-                document.getElementById('linkLogout').style.display = 'block'; // Garantir que o link de logout apareça
-                document.getElementById('linkLogin').style.display = 'none';
-            } else {
-                document.getElementById('linkCadastrarEndereco').style.display = 'none';
-                document.getElementById('linkLogout').style.display = 'none';
-                document.getElementById('linkLogin').style.display = 'block';
-            }
-        }
-    
-        // Verifica se o usuário está logado ao carregar a página
-        updateButtonVisibility();
-    
-        function logout() {
-            localStorage.removeItem('loggedIn'); // Remove o item de login
-            localStorage.removeItem('accessToken'); // Remove o token de acesso
-            localStorage.removeItem('user'); // Remove informações do usuário
-            alert("Deslogado com sucesso!");
-            updateButtonVisibility(); // Atualiza a visibilidade após logout
-            window.location.href = "../view/index.html"; // Redireciona para a página de login
-        }
-    
-        // Eventos de logout
-        document.getElementById('linkLogout').addEventListener('click', function(event) {
-            event.preventDefault(); // Previne o comportamento padrão do link
-            logout(); // Chama a função de logout
-        });
-    </script>
-    
+      <script src="../script/index.js"> </script>
 </body>
-</html><!--
+</html>
