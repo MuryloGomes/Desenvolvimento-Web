@@ -12,32 +12,36 @@
             <h1>Cadastro de Endereço</h1>
             <form id="enderecoForm">
 
+                <label for="title">Título:</label>
+                <input type="text" id="title" name="title" required>
+
                 <label for="cep">CEP:</label>
-                <input type="text" id="cep" name="cep" required>
+                <input type="text" id="cep" name="cep" required pattern="^\d{5}-\d{3}$" title="O CEP deve estar no formato XXXXX-XXX.">
 
-                <label for="rua">Rua:</label>
-                <input type="text" id="rua" name="rua" required>
+                <label for="address">Rua:</label>
+                <input type="text" id="address" name="address" required>
 
-                <label for="numero">Número:</label>
-                <input type="number" id="numero" name="numero" required>
+                <label for="number">Número:</label>
+                <input type="number" id="number" name="number" required>
 
-                <label for="complemento">Complemento:</label>
-                <input type="text" id="complemento" name="complemento" required>
-
-                <label for="cidade">Cidade:</label>
-                <input type="text" id="cidade" name="cidade" required>
-
-                <label for="estado">Estado:</label>
-                <input type="text" id="estado" name="estado" required>
+                <label for="complement">Complemento:</label>
+                <input type="text" id="complement" name="complement">
 
                 <div class="button-container">
-                    <button type="submit">Cadastr</button>
+                    <button type="submit">Cadastrar</button>
                 </div>
             </form>
         </div>
+        <div id="loader" style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);">
+            <div class="spinner"></div>
+        </div>
     </div>
 
-    <script src="endereco.js"></script>
+    <script src="../script/endereco.js"></script>
 </body>
 </html>
+
+
+
+
 
