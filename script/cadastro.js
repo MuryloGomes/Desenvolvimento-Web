@@ -66,6 +66,6 @@ document.getElementById('cadastroForm').addEventListener('submit', e => {
 
 const usuario = JSON.parse(localStorage.getItem('usuario'));
 
- if (usuario) {
-     document.getElementById('linkCadastrarEndereco').style.display = 'block';
+if (usuario) {
+    document.getElementById('linkCadastrarEndereco').style.display = 'block';
 }
