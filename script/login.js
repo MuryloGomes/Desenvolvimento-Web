@@ -1,4 +1,5 @@
 const url = 'https://go-wash-api.onrender.com/api/login';
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodtZWZjOWM5NTgyNjg3Lmhlcm9rdWFwcC5jb20vYXBpL2xvZ2luIiwiaWF0IjoxNzEyMDc4Mjg0LCJuYmYiOjE3MTIwNzgyODQsImp0aSI6ImRPajVkTng4WEgxdVJ5TVkiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3M"
 
 async function loginUser(event) {
     event.preventDefault(); 
@@ -16,7 +17,8 @@ async function loginUser(event) {
                 "user_type_id": 1 
             }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             }
         });
 

@@ -1,4 +1,4 @@
-const url = "https://go-wash-api.onrender.com/api/auth/address"; // Defina a URL correta
+const url = "https://go-wash-api.onrender.com/api/auth/address"; 
 
 async function cadastroEndereco() {
     // Exibir o loader
@@ -66,7 +66,7 @@ async function cadastroEndereco() {
 
         if (API.ok) {
             alert("Cadastro realizado com sucesso!");
-            window.location.href = "index.html"; // Direciona para index.html
+            window.location.href = "index.html"; 
         } else {
             console.error(resposta);
             if (resposta.message && resposta.message.includes("endereço já cadastrado")) {
