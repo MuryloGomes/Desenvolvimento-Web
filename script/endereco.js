@@ -66,7 +66,7 @@ async function cadastroEndereco() {
 
         if (API.ok) {
             alert("Cadastro realizado com sucesso!");
-            window.location.href = "index.html"; 
+            window.location.href = "indexendereco.html"; 
         } else {
             console.error(resposta);
             if (resposta.message && resposta.message.includes("endereço já cadastrado")) {

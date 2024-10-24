@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Endereços</title>
+    <link rel="stylesheet" href="../styles/listaEndereco.css"> 
+</head>
+<body>
+    <div class="container">
+        <div class="list-container">
+            <h1>Listagem de Endereços</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>CEP</th>
+                        <th>Rua</th>
+                        <th>Número</th>
+                        <th>Complemento</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="enderecoList">
+                    <!-- Exemplo de endereços -->
+                    <tr>
+                        <td>Casa</td>
+                        <td>12345-678</td>
+                        <td>Rua Exemplo</td>
+                        <td>123</td>
+                        <td>Apto 1</td>
+                        <td>
+                            <button class="btn-edit">Editar</button>
+                            <button class="btn-delete">Excluir</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Trabalho</td>
+                        <td>87654-321</td>
+                        <td>Avenida Exemplo</td>
+                        <td>456</td>
+                        <td>Andar 5</td>
+                        <td>
+                            <button class="btn-edit">Editar</button>
+                            <button class="btn-delete">Excluir</button>
+                        </td>
+                    </tr>
+                    <!-- Adicione mais endereços aqui -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../script/listaEndereco.js"></script>
+</body>
+</html>

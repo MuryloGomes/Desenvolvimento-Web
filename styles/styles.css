@@ -399,4 +399,81 @@ footer {
 
 .proximo-jogo p {
   font-size: 16px;
-}/*
+}
+
+.tamanho-maior {
+    min-height: 750px; /* Ajuste a altura conforme necessário */
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Alinha verticalmente */
+    align-items: center; /* Alinha horizontalmente */
+    min-height: 0px; /* Ajuste a altura conforme necessário */
+}
+
+/* Estilos da tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead tr {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Estilos da tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead tr {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Estilos dos botões */
+button {
+  margin: 5px;
+  cursor: pointer;
+}
+
+button.btn-edit {
+  padding: 5px 10px;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button.btn-edit:hover {
+  background-color: #005bb5;
+}
+
+button.btn-delete {
+  padding: 5px 10px;
+  background-color: #d9534f; /* Cor de fundo vermelho */
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button.btn-delete:hover {
+  background-color: #c9302c; /* Cor ao passar o mouse */
+}
+

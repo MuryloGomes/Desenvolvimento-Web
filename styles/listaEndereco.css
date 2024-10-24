@@ -1,0 +1,87 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais para o body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Cor de fundo padrão */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altera conforme necessário */
+    margin: 0;
+    background: url('../imagens/cruzeiro-torcida1.jpg.crdownload') no-repeat center center fixed; /* Imagem de fundo */
+    background-size: cover; /* Faz a imagem cobrir todo o fundo */
+}
+
+/* Estilos do contêiner */
+.container {
+    padding: 20px;
+    max-width: 800px; /* Limita a largura do contêiner */
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco com transparência */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.list-container {
+    margin-top: 20px;
+}
+
+/* Estilos da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead tr {
+    background-color: #f2f2f2;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Estilos dos botões */
+button {
+    margin: 5px;
+    cursor: pointer;
+}
+
+button.btn-edit {
+    padding: 5px 10px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button.btn-edit:hover {
+    background-color: #005bb5;
+}
+
+button.btn-delete {
+    padding: 5px 10px;
+    background-color: #d9534f; /* Cor de fundo vermelho */
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button.btn-delete:hover {
+    background-color: #c9302c; /* Cor ao passar o mouse */
+}
+
+/* Estilos de responsividade */
+@media (max-width: 768px) {
+    th, td {
+        font-size: 14px; /* Ajusta o tamanho da fonte em telas menores */
+    }
+}
