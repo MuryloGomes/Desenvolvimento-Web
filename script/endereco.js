@@ -67,13 +67,6 @@ async function cadastroEndereco() {
         if (API.ok) {
             alert("Cadastro realizado com sucesso!");
             window.location.href = "indexendereco.html"; 
-        } else {
-            console.error(resposta);
-            if (resposta.message && resposta.message.includes("endereço já cadastrado")) {
-                alert("Você já cadastrou esse endereço anteriormente.");
-            } else {
-                alert("Erro ao cadastrar o endereço. Verifique os dados e tente novamente.");
-            }
         }
     } catch (error) {
         document.getElementById('loader').style.display = 'none'; // Esconder o loader em caso de erro
