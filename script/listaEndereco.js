@@ -3,6 +3,16 @@ const tabela = document.getElementById("tabela").getElementsByTagName("tbody")[0
 const token = localStorage.getItem("accessToken");
 let enderecos = []; // Array para armazenar os endereços
 
+// Função para mostrar o loader
+function mostrarLoader() {
+    document.getElementById('loader').style.display = 'block';
+}
+
+// Função para esconder o loader
+function esconderLoader() {
+    document.getElementById('loader').style.display = 'none';
+}
+
 // Função para listar endereços
 async function listarEndereco() {
     document.getElementById('loader').style.display = 'block';
@@ -71,39 +81,49 @@ function criarColunaAcoes(index) {
 // Função para excluir endereço
 async function excluirEndereco(index) {
     if (confirm("Você tem certeza que deseja excluir este endereço?")) {
+        mostrarLoader(); // Mostra o loader ao confirmar a exclusão
         const enderecoId = enderecos[index].id;
 
         try {
-            await fetch(`https://go-wash-api.onrender.com/api/auth/address/${enderecoId}`, {
+            const response = await fetch(`https://go-wash-api.onrender.com/api/auth/address/${enderecoId}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
             });
 
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Erro ao excluir: ${response.status} - ${errorText}`);
+            }
+
             enderecos.splice(index, 1); // Remove o endereço do array
-            listarEndereco(); // Atualiza a lista de endereços
+            await listarEndereco(); // Aguarda a atualização da lista de endereços
+            alert("Endereço excluído com sucesso."); // Mensagem após a tabela ser atualizada
         } catch (error) {
             console.error("Erro ao excluir endereço:", error);
+        } finally {
+            esconderLoader(); // Esconde o loader
         }
     }
 }
 
+// Função para atualizar endereço
 async function atualizarEndereco(endereco) {
-    console.log("Atualizando endereço:", endereco); // Verifica o objeto endereco
+    console.log("Atualizando endereço:", endereco);
+    mostrarLoader(); // Mostra o loader ao atualizar
 
-    // Adiciona validação para garantir que todos os campos necessários estejam presentes
     if (!endereco.title || !endereco.cep || !endereco.address || !endereco.number) {
         console.error("Todos os campos obrigatórios devem ser preenchidos.");
+        esconderLoader(); // Esconde o loader se houver erro
         return;
     }
 
-    // Verifica se complemento é nulo ou vazio e atribui "Sem Complemento" se for o caso
     const complementoFinal = endereco.complement ? endereco.complement.trim() : "Sem Complemento";
 
     try {
         const response = await fetch(`https://go-wash-api.onrender.com/api/auth/address/${endereco.id}`, {
-            method: "POST", // Mantenha POST aqui
+            method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json"
@@ -112,22 +132,24 @@ async function atualizarEndereco(endereco) {
                 title: endereco.title,
                 cep: endereco.cep,
                 address: endereco.address,
-                number: endereco.number, // Incluindo o campo number
-                complement: complementoFinal // Usa o complemento final
+                number: endereco.number,
+                complement: complementoFinal
             })
         });
 
         if (!response.ok) {
-            const errorText = await response.text(); // Captura a resposta do erro
+            const errorText = await response.text();
             throw new Error(`Erro ao atualizar: ${response.status} - ${errorText}`);
         }
 
-        listarEndereco(); // Atualiza a lista de endereços
+        await listarEndereco(); // Aguarda a atualização da lista de endereços
+        alert("Endereço atualizado com sucesso."); // Mensagem após a tabela ser atualizada
     } catch (error) {
         console.error("Erro ao atualizar endereço:", error);
+    } finally {
+        esconderLoader(); // Esconde o loader
     }
 }
-
 
 
 

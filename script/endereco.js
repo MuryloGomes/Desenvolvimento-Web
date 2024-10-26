@@ -67,6 +67,8 @@ async function cadastroEndereco() {
         if (API.ok) {
             alert("Cadastro realizado com sucesso!");
             window.location.href = "indexendereco.html"; 
+        } else {
+            alert(`Erro: ${resposta.message || 'Erro ao cadastrar o endereço.'}`);
         }
     } catch (error) {
         document.getElementById('loader').style.display = 'none'; // Esconder o loader em caso de erro
@@ -87,18 +89,21 @@ document.getElementById('cep').addEventListener('input', async function () {
     this.value = cep; // Atualiza o campo de entrada com o novo valor formatado
 
     // Busca o endereço se o CEP tiver 8 dígitos
-    if (cep.length === 8) {
+    if (cep.length === 9) { // Agora verificamos o formato com o traço
+        const cepSemTraco = cep.replace('-', ''); // Remove o traço para a busca
         try {
-            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            const response = await fetch(`https://viacep.com.br/ws/${cepSemTraco}/json/`);
             const data = await response.json();
 
             if (!data.erro) {
                 document.getElementById('address').value = data.logradouro || '';
             } else {
                 alert('CEP não encontrado.');
+                document.getElementById('address').value = ''; // Limpa o campo se o CEP não for encontrado
             }
         } catch (error) {
             console.error('Erro ao buscar endereço:', error);
+            alert("Erro ao buscar o endereço. Tente novamente mais tarde.");
         }
     } else if (cep.length === 0) {
         // Limpa o campo de endereço se o CEP estiver vazio

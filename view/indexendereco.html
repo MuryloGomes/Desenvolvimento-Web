@@ -24,6 +24,25 @@
         #enderecoContainer {
             display: none; /* Esconde a lista de endereços inicialmente */
         }
+        
+        #loader {
+            z-index: 1000; /* Para garantir que o carregador apareça acima de outros elementos */
+            text-align: center;
+        }
+
+        .spinner {
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top: 8px solid #0073e6;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
         #loading {
             text-align: center;
@@ -65,30 +84,8 @@
                         <!-- As linhas da tabela serão inseridas aqui -->
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div id="enderecoContainer">
-            <div class="container">
-                <div class="list-container">
-                    <h1>Listagem de Endereços</h1>
-                    <div id="loader" style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);">
-                        <div class="spinner"></div>
-                    </div>
-                    <table id="tabela">
-                        <thead>
-                            <tr>
-                                <th>Título</th>
-                                <th>CEP</th>
-                                <th>Rua</th>
-                                <th>Número</th>
-                                <th>Complemento</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody id="enderecoList">
-                            <!-- Endereços serão adicionados aqui -->
-                        </tbody>
-                    </table>
+                <div id="loader" style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);">
+                    <div class="spinner"></div>
                 </div>
             </div>
         </div>
