@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Endereço</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/atualizarendereco.css">
+</head>
+<body>
+    <header>
+        <div class="headerr">
+            <a href="index.html" class="align-top">
+                <img src="../imagens/bonecoooo.png" id="boneco" width="50px">
+            </a>
+        </div>
+    </header>
+    <div class="container">
+
+    <main class="tamanho-maior">
+        <section>
+            <div class="form-box">
+                <div class="form-value">
+                    <h2>Informações de Endereço</h2>
+                    <div class="inputbox">
+                        <input id="title" type="text" placeholder="Título" name="title" required>
+                    </div>
+                    <div class="inputbox">
+                        <input id="cep" type="text" placeholder="CEP" name="cep" required oninput="formatarCEP(this)">
+                    </div>
+                    <div class="inputbox">
+                        <input id="address" type="text" placeholder="Endereço" name="address" required>
+                    </div>
+                    <div class="inputbox">
+                        <input id="number" type="text" placeholder="Número" name="number" required>
+                    </div>
+                    <div class="inputbox">
+                        <input id="complement" type="text" placeholder="Complemento" name="complement" required>
+                    </div>
+                    <button class="botao" type="submit" onclick="atualizarEndereco()">Continuar</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="loader"></div>
+    </div>
+    </main>
+    <script src="../script/atualizarendereco.js"></script>
+</body>
+</html>

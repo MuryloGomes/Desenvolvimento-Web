@@ -13,7 +13,7 @@ async function cadastroEndereco() {
     }
 
     let title = document.getElementById('title').value.trim();
-    let cep = document.getElementById('cep').value.trim().replace(/\D/g, ''); // Remove caracteres não numéricos
+    let cep = document.getElementById('cep').value.trim(); // Remove caracteres não numéricos
     let address = document.getElementById('address').value.trim();
     let number = document.getElementById('number').value.trim();
     let complement = document.getElementById('complement').value.trim();
@@ -25,7 +25,7 @@ async function cadastroEndereco() {
         return;
     }
 
-    if (cep.length !== 8) {
+    if (cep.length !== 9) {
         alert("O CEP deve ter 8 dígitos.");
         document.getElementById('loader').style.display = 'none'; // Esconder o loader
         return;

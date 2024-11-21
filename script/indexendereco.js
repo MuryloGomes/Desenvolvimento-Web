@@ -66,6 +66,10 @@ function criarColunaAcoes(index) {
     botaoEditar.textContent = "Editar";
     botaoEditar.className = "btn";
     botaoEditar.onclick = () => editarEndereco(index);
+    //botaoEditar.onclick = () => {
+        // Redireciona para a página de edição com o ID do endereço
+        //window.location.href = `gepeto.html?id=${enderecos[index].id}`;
+    //};
 
     let botaoExcluir = document.createElement("button");
     botaoExcluir.textContent = "Excluir";
@@ -77,6 +81,9 @@ function criarColunaAcoes(index) {
 
     return colunaAcoes;
 }
+
+
+
 
 // Função para excluir endereço
 async function excluirEndereco(index) {
@@ -108,6 +115,9 @@ async function excluirEndereco(index) {
     }
 }
 
+// Chamada inicial para listar endereços
+listarEndereco();
+
 // Função para atualizar endereço
 async function atualizarEndereco(endereco) {
     console.log("Atualizando endereço:", endereco);
@@ -123,7 +133,7 @@ async function atualizarEndereco(endereco) {
 
     try {
         const response = await fetch(`https://go-wash-api.onrender.com/api/auth/address/${endereco.id}`, {
-            method: "POST",
+            method: "POST", // Atualizar com PUT
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json"
@@ -151,28 +161,12 @@ async function atualizarEndereco(endereco) {
     }
 }
 
-
-
-// Função para editar endereço
 function editarEndereco(index) {
-    const endereco = enderecos[index]; // Certifique-se de que "enderecos" está definido
-    console.log("Endereço selecionado para edição:", endereco); // Log para verificar o endereco selecionado
+    const endereco = enderecos[index]; // Obtém o endereço selecionado
+    console.log("Endereço selecionado para edição:", endereco); // Log para depuração
 
-    // Supondo que você tenha uma interface para coletar novos dados
-    const novoTitulo = prompt("Novo Título:", endereco.title);
-    const novoCep = prompt("Novo CEP:", endereco.cep);
-    const novoEndereco = prompt("Novo Endereço:", endereco.address);
-    const novoComplemento = prompt("Novo Complemento:", endereco.complement);
-
-    // Atualiza os dados do objeto endereco
-    if (novoTitulo !== null) endereco.title = novoTitulo;
-    if (novoCep !== null) endereco.cep = novoCep;
-    if (novoEndereco !== null) endereco.address = novoEndereco;
-    if (novoComplemento !== null) endereco.complement = novoComplemento;
-
-    // Chama a função de atualização com o objeto atualizado
-    atualizarEndereco(endereco);
+    // Redireciona para a página de edição, passando o ID do endereço na URL
+    const enderecoId = endereco.id;
+    console.log("Redirecionando para editar endereço com ID:", enderecoId); // Log para verificar ID
+    window.location.href = `atualizarendereco.html?id=${enderecoId}`;
 }
-
-// Chamada inicial para listar endereços
-listarEndereco();

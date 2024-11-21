@@ -5,55 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/styles.css">
-    <style>
-        .btn {
-            background-color: #005bb5; /* Cor de fundo azul */
-            color: white; /* Cor do texto branca */
-            padding: 10px 20px; /* Adiciona um padding ao botão */
-            text-decoration: none; /* Remove o sublinhado */
-            border-radius: 5px; /* Arredonda os cantos do botão */
-            transition: background-color 0.3s; /* Transição suave para a cor de fundo */
-        }
-
-        .btn:hover {
-            background-color: white; /* Cor de fundo branca ao passar o mouse */
-            color: #005bb5; /* Cor do texto azul ao passar o mouse */
-            border: 1px solid #005bb5; /* Adiciona uma borda azul ao passar o mouse */
-        }
-
-        #enderecoContainer {
-            display: none; /* Esconde a lista de endereços inicialmente */
-        }
-        
-        #loader {
-            z-index: 1000; /* Para garantir que o carregador apareça acima de outros elementos */
-            text-align: center;
-        }
-
-        .spinner {
-            border: 8px solid rgba(255, 255, 255, 0.3);
-            border-top: 8px solid #0073e6;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        #loading {
-            text-align: center;
-            font-size: 20px;
-            margin: 20px;
-        }
-        
-        body{
-            background: #e1e8f7;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/indexendereco.css">
 </head>
 <body>
     <header>
@@ -89,6 +41,7 @@
                 </div>
             </div>
         </div>
+        
         <div id="mensagemAdicionarEndereco">
             <h2>Adicione um Endereço</h2>
             <a href="../view/endereco.html" class="btn">Cadastrar Endereço</a>
@@ -144,7 +97,7 @@
             </div>
         </div>
     </footer>
-    <script src="../script/listaEndereco.js"></script>
+    <script src="../script/indexendereco.js"></script>
 </body>
 </html>
 
